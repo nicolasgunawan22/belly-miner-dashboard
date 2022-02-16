@@ -17,3 +17,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.card {
+  border-radius: 1.5rem !important;
+}
+.card-body {
+  border-radius: 1.5rem;
+}
+
+.navbar-brand {
+  margin-right: 0 !important;
+}
