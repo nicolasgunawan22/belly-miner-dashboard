@@ -3,123 +3,68 @@ import React from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 function Header({ balanceData }) {
-  console.log(balanceData)
 
   return (
     <>
-      <div className="header bg-gradient-dark pb-8 pt-5 pt-md-8">
-        <Container fluid>
-          <div className="header-body">
-            <Row>
-              <Col lg="6" xl="3">
-                <Card className="mb-4 mb-xl-0 rounded-xl">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          Balance
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {balanceData.toString().slice(0, 8)}
-                        </span>
-                      </div>
-                      <Col className="col-auto">
-                        <i className="fas fa-chart-bar" />
-                      </Col>
-                    </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <i className="fa fa-arrow-up" /> 3.48%
+      <div className="bg-gradient-dark py-3 pt-md-8">
+        <div>
+          <Row>
+            <Col className="rounded-xl" lg="12" xl="6">
+              <Card className="rounded-xl mb-4 mb-xl-0">
+                <CardBody>
+                  <Row>
+                    <div className="col text-center h-20 flex flex-col justify-between">
+                      <CardTitle
+                        tag="h5"
+                        className="text-muted"
+                      >
+                        Account
+                      </CardTitle>
+                      <span className="text-lg">0x5a7ad5c896d77e3ba4af0de014f8b34fa248f45a</span>
+                    </div>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col lg="6" xl="3">
+              <Card className="mb-4 mb-xl-0 rounded-xl">
+                <CardBody>
+                  <Row>
+                    <div className="col text-center h-20 flex flex-col justify-between">
+                      <CardTitle
+                        tag="h5"
+                        className="text-muted"
+                      >
+                        Balance
+                      </CardTitle>
+                      <span className="h3">
+                        {balanceData.toString().slice(0, 8)}
                       </span>
-                      <span className="text-nowrap">Since last month</span>
-                    </p>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="rounded-xl" lg="6" xl="3">
-                <Card className="rounded-xl mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          New users
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">2,356</span>
-                      </div>
-                      <Col className="col-auto">
-                        <i className="fas fa-chart-pie" />
-                      </Col>
-                    </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-danger mr-2">
-                        <i className="fas fa-arrow-down" /> 3.48%
-                      </span>
-                      <span className="text-nowrap">Since last week</span>
-                    </p>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="rounded-xl" lg="6" xl="3">
-                <Card className="rounded-xl mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          Sales
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">924</span>
-                      </div>
-                      <Col className="col-auto">
-                        <i className="fas fa-users" />
-                      </Col>
-                    </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-warning mr-2">
-                        <i className="fas fa-arrow-down" /> 1.10%
-                      </span>
-                      <span className="text-nowrap">Since yesterday</span>
-                    </p>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="rounded-xl" lg="6" xl="3">
-                <Card className="rounded-xl mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          Performance
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">49,65%</span>
-                      </div>
-                      <Col className="col-auto">
-                        <i className="fas fa-percent" />
-                      </Col>
-                    </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <i className="fas fa-arrow-up" /> 12%
-                      </span>
-                      <span className="text-nowrap">Since last month</span>
-                    </p>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </div>
-        </Container>
+                    </div>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col className="rounded-xl" lg="6" xl="3">
+              <Card className="rounded-xl mb-4 mb-xl-0">
+                <CardBody>
+                  <Row>
+                    <div className="col text-center h-20 flex flex-col justify-between">
+                      <CardTitle
+                        tag="h5"
+                        className="text-muted"
+                      >
+                        Minimum Payout
+                      </CardTitle>
+                      <span className="h3">0.05</span>
+                    </div>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
+
+          </Row>
+        </div>
       </div>
     </>
   );

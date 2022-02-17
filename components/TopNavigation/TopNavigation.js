@@ -21,7 +21,7 @@ function TopNavigation() {
    return (
       <div>
          <Navbar
-            className="p-8 font-bold text-base"
+            className="font-bold text-base"
             expand="md"
          >
             <Nav

@@ -7,8 +7,10 @@ function Container({ children }) {
     <div className="bg-neutral-200 min-h-screen">
       <SideBar />
       <div className="ml-64">
-        <TopNavigation />
-        {children}
+        <div className="mx-4">
+          <TopNavigation />
+          {children}
+        </div>
       </div>
     </div>
 
