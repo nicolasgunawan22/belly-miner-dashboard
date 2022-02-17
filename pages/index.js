@@ -62,7 +62,8 @@ export default function Home({ hashratechart, balance, approx_earnings }) {
         <Header balanceData={balanceData} />
         <Row>
           <Col className="rounded-xl" lg="12" xl="6">
-            <div className="rounded-xl mb-4 mb-xl-0">
+            <div className="rounded-xl mb-4 mb-xl-0 p-4 bg-white text-center">
+              <div className="h5 text-muted pb-2">Earnings Approximation</div>
               <Table data={approxEarnings} />
             </div>
           </Col>
