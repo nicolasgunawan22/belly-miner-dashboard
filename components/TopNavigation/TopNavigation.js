@@ -13,6 +13,7 @@ import {
    NavbarText,
    Navbar
 } from "reactstrap";
+import Link from "next/link"
 import { BsFillPersonFill, BsFillGearFill } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
@@ -51,14 +52,16 @@ function TopNavigation() {
                      Nicolas
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
-                     <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
-                        <BsFillPersonFill className="text-lg" />
-                        My Profile
-                     </button>
-                     <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
+                     <Link href='/profile' passHref>
+                        <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
+                           <BsFillPersonFill className="text-lg" />
+                           My Profile
+                        </button>
+                     </Link>
+                     {/* <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
                         <BsFillGearFill className="text-lg" />
                         Settings
-                     </button>
+                     </button> */}
                      <DropdownItem divider />
                      <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
                         <BiLogOut className="text-lg" />

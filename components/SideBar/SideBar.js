@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 import { MdDashboard } from 'react-icons/md';
-import { AiFillRocket, AiFillExclamationCircle, AiFillQuestionCircle } from 'react-icons/ai';
+import { AiFillBook, AiFillRocket, AiFillExclamationCircle, AiFillQuestionCircle } from 'react-icons/ai';
 
 function SideBar() {
   const router = useRouter()
@@ -46,6 +46,15 @@ function SideBar() {
           </Link>
         </NavItem>
 
+        <NavItem className={`flex items-center rounded-3xl hover:-translate-y-0.5 ${router.pathname === '/tutorial' ? 'bg-violet-900' : ''}`}>
+          <Link href="/tutorial" className="text-white">
+            <a className={`flex items-center gap-6 px-3 py-2 ${router.pathname === '/tutorial' ? 'text-white' : 'text-violet-400'} no-underline	font-semibold hover:text-violet-400  `}>
+              <AiFillBook className="text-fuchsia-500" />
+              Tutorials
+            </a>
+          </Link>
+        </NavItem>
+
         <NavItem className={`flex items-center rounded-3xl hover:-translate-y-0.5 ${router.pathname === '/help' ? 'bg-violet-900' : ''}`}>
           <Link href="/help" className="text-white">
             <a className={`flex items-center gap-6 px-3 py-2 ${router.pathname === '/help' ? 'text-white' : 'text-violet-400'} no-underline	font-semibold hover:text-violet-400  `}>
@@ -54,6 +63,7 @@ function SideBar() {
             </a>
           </Link>
         </NavItem>
+
 
         <NavItem className={`flex items-center rounded-3xl hover:-translate-y-0.5 ${router.pathname === '/about' ? 'bg-violet-900' : ''}`}>
           <Link href="/about" className="text-white">
