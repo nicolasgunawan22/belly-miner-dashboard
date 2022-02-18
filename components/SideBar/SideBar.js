@@ -17,7 +17,7 @@ function SideBar() {
   return (
     <div
       color="dark"
-      dark
+      dark="true"
       fixed="top"
       className="h-full w-64 bg-violet-800 fixed bottom-0 top-0 left-0 flex flex-col p-8 hover:no-underline gap-12 text-lg"
     >
