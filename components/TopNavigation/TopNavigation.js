@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import {
    Collapse,
    DropdownMenu,
@@ -14,11 +15,44 @@ import {
    Navbar
 } from "reactstrap";
 import Link from "next/link"
-import { BsFillPersonFill, BsFillGearFill } from 'react-icons/bs';
+import { BsFillPersonFill } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 
 function TopNavigation() {
+   let routes = [
+      {
+         path: "/",
+         name: "Dashboard",
+      },
+      {
+         path: "/payments",
+         name: "Payments",
+      },
+      {
+         path: "/upgrade",
+         name: "Upgrade",
+      },
+      {
+         path: "/help",
+         name: "Help",
+      },
+      {
+         path: "/about",
+         name: "About Us",
+      },
+   ];
+
+   const router = useRouter()
+   const pageName = routes?.filter(route => route.path == router.route)?.[0]?.name
+
+   function handleLogout() {
+      if (sessionStorage.token) {
+         sessionStorage.removeItem("token");
+         router.push("/login")
+      }
+   }
+
    return (
       <div>
          <Navbar
@@ -30,8 +64,8 @@ function TopNavigation() {
                navbar
             >
                <NavItem>
-                  <NavLink className="text-black" href="/">
-                     Dashboard
+                  <NavLink className="text-black capitalize" href={router.route}>
+                     {pageName ? pageName : ''}
                   </NavLink>
                </NavItem>
 
@@ -63,7 +97,7 @@ function TopNavigation() {
                         Settings
                      </button> */}
                      <DropdownItem divider />
-                     <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
+                     <button onClick={handleLogout} className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
                         <BiLogOut className="text-lg" />
                         Logout
                      </button>

@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Header from "components/Header/Header.js";
 import Container from "components/Container/Container.js";
+import Graph from "components/Graph/Graph.js";
 import Table from "components/Table/Table.js";
 import PaymentHistory from "components/Table/PaymentHistory.js";
 import {
@@ -13,8 +15,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { Card, CardBody, CardTitle, Row, Col } from "reactstrap";
+import { Row, Col, Card } from "reactstrap";
+import jwt from "jwt-decode";
 
 ChartJS.register(
   CategoryScale,
@@ -30,10 +32,16 @@ ChartJS.register(
 export default function Home({ hashratechart, balance, approx_earnings, payments }) {
   const hashRateChartData = hashratechart.data
   const labels = hashRateChartData.map(data => new Date(data.date * 1000).toLocaleString()).slice(-25)
-  const hashrate = hashRateChartData.map(data => data.hashrate).slice(-25)
+  const hashrate = hashRateChartData.map(data => data.hashrate / 1000).slice(-25)
   const balanceData = balance.data
   const approxEarnings = approx_earnings.data
-  const paymentsData = payments.data[0]
+  const paymentsData = payments.data.slice(-2)
+
+  useEffect(() => {
+    if (window.sessionStorage.token) {
+      console.log(jwt(window.sessionStorage.token))
+    }
+  }, [])
 
   const options = {
     tension: 0.45,
@@ -61,39 +69,22 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
       </Head>
 
       <Container>
-        <Header balanceData={balanceData} />
         <Row>
-          <Col className="rounded-xl" lg="12" xl="6">
-            {/* <Row>
-              <div className="h5 text-muted pb-2">Earnings Approximation</div>
-              <Table data={approxEarnings} />
-            </Row> */}
-          </Col>
-          <Col className="rounded-xl" lg="12" xl="6">
-            <Card className="rounded-xl mb-4 mb-xl-0">
-              <CardBody>
-                <Row>
-                  <div>
-                    <Line options={options} data={data} />
-                  </div>
-                </Row>
-
-              </CardBody>
-            </Card>
-          </Col>
+          <Header balanceData={balanceData} />
         </Row>
         <Row>
-          <div className="h5 text-muted pb-2">Earnings Approximation</div>
-          <Table data={approxEarnings} />
-        </Row>
-        <Row className=''>
-          <div className="w-full">
-            <div className="h5 text-muted pb-2">Payment History</div>
+          <Col sm={5}>
             <PaymentHistory data={paymentsData} />
-          </div>
+          </Col>
+          <Col sm={7}>
+            <Table data={approxEarnings} />
+          </Col>
+        </Row>
+        <Row>
+
         </Row>
       </Container>
-    </div>
+    </div >
   )
 }
 
@@ -113,7 +104,7 @@ export async function getStaticProps() {
       hashratechart,
       balance,
       approx_earnings,
-      payments
+      payments,
     },
   }
 }

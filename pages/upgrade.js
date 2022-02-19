@@ -12,7 +12,9 @@ function Upgrade() {
          </Head>
 
          <Container>
-            <div>Upgrade</div>
+            <div>
+
+            </div>
          </Container>
       </>
    )
