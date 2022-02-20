@@ -1,9 +1,11 @@
 import React from 'react'
 import Container from "components/Container/Container.js";
 import PaymentHistory from "components/Table/PaymentHistory.js";
+import jwt from "jwt-decode";
+import jsHttpCookie from 'cookie';
 
 function Payments({ payments }) {
-   const paymentsData = payments.data
+   const paymentsData = payments.data || 0
    return (
       <Container>
          <PaymentHistory data={paymentsData} />
@@ -13,8 +15,24 @@ function Payments({ payments }) {
 
 export default Payments
 
-export async function getStaticProps() {
-   const payments_res = await fetch('https://eth.nanopool.org/api/v1/payments/0x5a7ad5c896d77e3ba4af0de014f8b34fa248f45a')
+export async function getServerSideProps({ req }) {
+   const initProps = {};
+   if (req && req.headers) {
+      const cookies = req.headers.cookie;
+      if (typeof cookies === 'string') {
+         const cookiesJSON = jsHttpCookie.parse(cookies);
+         initProps.token = cookiesJSON.token;
+      }
+   }
+   console.log(initProps)
+
+   const userId = jwt(initProps?.token)._id
+
+   const user_res = await fetch(`http://localhost:5000/api/user/${userId}`)
+   const userData = await user_res.json()
+   const walletAddress = userData?.user?.walletAddress
+
+   const payments_res = await fetch(`https://eth.nanopool.org/api/v1/payments/${walletAddress}`)
    const payments = await payments_res.json()
 
    return {

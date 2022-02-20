@@ -5,13 +5,10 @@ function PaymentHistory(data) {
       delete d.txHash
       return d
    })
-   tableData.map(data => {
-      Object.entries(data).map(([key, value]) => {
-         if (key === 'amount') {
-            console.log(value.toString().slice(0, 6))
-         }
-      })
-   })
+
+   console.log(tableData)
+   if (!tableData || tableData.length < 1) return <>No Data</>
+
    return (
       <div className="flex flex-col">
          <div className="overflow-x-auto">
@@ -49,6 +46,7 @@ function PaymentHistory(data) {
             </div>
          </div>
       </div>
+
    )
 }
 

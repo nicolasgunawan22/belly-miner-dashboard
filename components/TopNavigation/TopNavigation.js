@@ -18,8 +18,11 @@ import Link from "next/link"
 import { BsFillPersonFill } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
+import { useUser } from 'components/User/User';
 
 function TopNavigation() {
+   const user = useUser()
+
    let routes = [
       {
          path: "/",
@@ -83,7 +86,7 @@ function TopNavigation() {
                      }}
                   >
                      <CgProfile className="text-xl mx-2" />
-                     Nicolas
+                     {user?.user?.firstName}
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
                      <Link href='/profile' passHref>

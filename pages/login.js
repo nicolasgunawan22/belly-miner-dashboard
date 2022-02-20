@@ -6,6 +6,7 @@ import axios from "axios";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import jwt from 'jwt-decode'
 import miningrig from '../public/assets/mining-rig.png'
+import Cookies from 'js-cookie'
 
 function Login() {
    const router = useRouter()
@@ -34,6 +35,7 @@ function Login() {
          setIsLoading(true)
          const response = await axios.post("http://localhost:5000/api/user/login", formData);
          sessionStorage.setItem("token", response.data.token);
+         Cookies.set("token", response.data.token)
          if (sessionStorage.token) {
             router.push("/");
          }

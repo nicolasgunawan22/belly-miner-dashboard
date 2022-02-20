@@ -42,7 +42,6 @@ function SideBar() {
     },
   ];
 
-  console.log(routes)
   return (
     <div
       color="dark"

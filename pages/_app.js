@@ -1,10 +1,13 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserProvider } from 'components/User/User'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </>
   )
 }

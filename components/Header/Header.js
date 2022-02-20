@@ -1,8 +1,10 @@
 import React from "react";
 
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import { useUser } from 'components/User/User';
 
 function Header({ balanceData }) {
+  const user = useUser()
 
   return (
     <>
@@ -20,7 +22,7 @@ function Header({ balanceData }) {
                       >
                         Account
                       </CardTitle>
-                      <span className="text-lg">0x5a7ad5c896d77e3ba4af0de014f8b34fa248f45a</span>
+                      <span className="text-lg">{user?.user?.walletAddress}</span>
                     </div>
                   </Row>
                 </CardBody>
