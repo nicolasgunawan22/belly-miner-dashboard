@@ -6,6 +6,16 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 function Container({ children }) {
   const [token, setToken] = useState('')
+  const [show, setShow] = useState(false)
+
+  function handleOpen() {
+    setShow(true)
+  }
+
+  function handleClose() {
+    setShow(false)
+  }
+
   const router = useRouter()
 
   useEffect(() => {
@@ -20,11 +30,11 @@ function Container({ children }) {
     return (
       <>
         <div className="bg-neutral-200 min-h-screen">
-          <SideBar />
-          <div className="ml-64">
-            <div className="mx-4 min-h-screen">
-              <TopNavigation />
-              <div className="mt-8">
+          <SideBar show={show} handleClose={handleClose} />
+          <div className="sm:ml-64">
+            <div className="mx-3 sm:mx-4 min-h-screen">
+              <TopNavigation handleOpen={handleOpen} handleClose={handleClose} />
+              <div className="mt-2 mb-2 sm:mt-8">
                 {children}
               </div>
             </div>

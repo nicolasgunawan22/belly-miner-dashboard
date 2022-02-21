@@ -30,3 +30,11 @@ a {
 .navbar-brand {
   margin-right: 0 !important;
 }
+
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
+}
+
+.nav-link {
+  display: flex !important;
+}

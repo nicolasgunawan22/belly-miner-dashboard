@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import axios from "axios";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import jwt from 'jwt-decode'
 import miningrig from '../public/assets/mining-rig.png'
 import Cookies from 'js-cookie'
 
@@ -60,22 +59,22 @@ function Login() {
             </Head>
 
             <div className="flex justify-center items-center h-screen w-screen bg-gradient-to-r from-violet-500 to-fuchsia-500">
-               <div className="flex justify-center items-center h-3/4 w-1/2 rounded-2xl bg-white shadow-2xl border-neutral-200">
-                  <div className="relative py-4 w-3/4 h-full filter flex justify-center items-end">
+               <div className="flex flex-col sm:flex-row justify-center items-center h-4/5 w-3/4 sm:w-1/2 rounded-2xl bg-white shadow-2xl border-neutral-200">
+                  <div className="relative py-4 w-full sm:w-3/4 h-full filter flex justify-center items-end">
                      <Image
                         src={miningrig}
                         alt="Mining Rig"
                         layout="fill"
                         objectFit="cover"
-                        className="rounded-l-2xl brightness-75"
+                        className="rounded-t-2xl sm:rounded-l-2xl brightness-75"
                      />
                   </div>
-                  <div className="h-full w-full px-6 py-4  sm:p-6 lg:p-8 dark:bg-neutral-800 dark:border-neutral-700">
+                  <div className="h-full w-full px-6 py-4 sm:p-6 lg:p-8 dark:bg-neutral-800 dark:border-neutral-700">
                      <form className="flex flex-col justify-center h-full space-y-6" onSubmit={handleOnSubmit}>
                         <h3 className="text-xl font-medium text-neutral-900 dark:text-white">Sign in to <span className="font-bold">BellyMiner</span> dashboard</h3>
                         {error && (
                            <div className="px-4 py-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                              <span className="font-medium">Unable to Login</span>
+                              <span className="font-medium">Unable to Sign in</span>
                            </div>
                         )}
                         <div>

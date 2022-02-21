@@ -30,7 +30,7 @@ function Help() {
          </Head>
 
          <Container>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4">
                <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 no-underline">
                   <Link href="/">
                      <a>

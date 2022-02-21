@@ -1,8 +1,8 @@
 import React from 'react'
 import Container from "components/Container/Container.js";
 import PaymentHistory from "components/Table/PaymentHistory.js";
-import jwt from "jwt-decode";
 import jsHttpCookie from 'cookie';
+import jwt from "jwt-decode";
 
 function Payments({ payments }) {
    const paymentsData = payments.data || 0
@@ -24,9 +24,8 @@ export async function getServerSideProps({ req }) {
          initProps.token = cookiesJSON.token;
       }
    }
-   console.log(initProps)
 
-   const userId = jwt(initProps?.token)._id
+   const userId = jwt(initProps.token)._id
 
    const user_res = await fetch(`http://localhost:5000/api/user/${userId}`)
    const userData = await user_res.json()

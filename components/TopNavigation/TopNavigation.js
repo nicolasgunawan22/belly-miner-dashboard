@@ -17,10 +17,11 @@ import {
 import Link from "next/link"
 import { BsFillPersonFill } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useUser } from 'components/User/User';
 
-function TopNavigation() {
+function TopNavigation({ handleOpen }) {
    const user = useUser()
 
    let routes = [
@@ -63,30 +64,30 @@ function TopNavigation() {
             expand="md"
          >
             <Nav
-               className="flex justify-between w-full "
+               className="flex w-full flex-row justify-between"
                navbar
             >
-               <NavItem>
-                  <NavLink className="text-black capitalize" href={router.route}>
+               <NavItem className="">
+                  <AiOutlineMenu onClick={handleOpen} className="inline-block sm:hidden text-xl my-2 cursor-pointer" />
+
+                  <li className="hidden sm:inline-block text-black capitalize py-2" href={router.route}>
                      {pageName ? pageName : ''}
-                  </NavLink>
+                  </li>
                </NavItem>
 
                <UncontrolledDropdown
                   inNavbar
                   nav
+                  className=""
                >
                   <DropdownToggle
                      caret
                      nav
-                     className="text-black"
-                     style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                     }}
+                     className="text-black flex items-center"
                   >
                      <CgProfile className="text-xl mx-2" />
                      {user?.user?.firstName}
+
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
                      <Link href='/profile' passHref>

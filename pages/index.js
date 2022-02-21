@@ -34,10 +34,11 @@ ChartJS.register(
 export default function Home({ hashratechart, balance, approx_earnings, payments, initProps, userData }) {
   const user = useUser()
   const dispatch = useDispatchUser()
+  console.log(user)
 
   useEffect(() => {
     dispatch({ type: 'GET_USER', payload: userData });
-  }, [])
+  }, [userData])
 
   const hashRateChartData = hashratechart?.data
   const labels = hashRateChartData?.map(data => new Date(data.date * 1000).toLocaleString()).slice(-25)
@@ -101,11 +102,11 @@ export async function getServerSideProps({ req }) {
     }
   }
 
-  const userId = jwt(initProps?.token)._id
+  const userId = jwt(initProps.token)._id
 
   const user_res = await fetch(`http://localhost:5000/api/user/${userId}`)
   const userData = await user_res.json()
-  const walletAddress = userData?.user?.walletAddress
+  const walletAddress = userData.user.walletAddress
 
   const nanopool_user_res = await fetch(`https://api.nanopool.org/v1/eth/user/${walletAddress}`)
   const nanopoolUser = await nanopool_user_res.json()
@@ -115,7 +116,7 @@ export async function getServerSideProps({ req }) {
   const balance_res = await fetch(`https://api.nanopool.org/v1/eth/balance/${walletAddress}`)
   const payments_res = await fetch(`https://eth.nanopool.org/api/v1/payments/${walletAddress}`)
   const approx_earnings_res = await fetch(`https://eth.nanopool.org/api/v1/approximated_earnings/${avgHashrateH24}`)
-
+  console.log(balance_res)
   const hashratechart = await chart_res.json()
   const balance = await balance_res.json()
   const approx_earnings = await approx_earnings_res.json()
