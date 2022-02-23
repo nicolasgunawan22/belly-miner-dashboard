@@ -6,7 +6,6 @@ function PaymentHistory(data) {
       return d
    })
 
-   console.log(tableData)
    if (!tableData || tableData.length < 1) return <>No Data</>
 
    return (

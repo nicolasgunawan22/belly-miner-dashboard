@@ -17,8 +17,6 @@ function Signup() {
       walletAddress: '',
    })
 
-   console.log(formData)
-
    const [error, setError] = useState(false)
 
    function handleOnChange(e) {

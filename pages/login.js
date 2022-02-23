@@ -66,7 +66,7 @@ function Login() {
                         alt="Mining Rig"
                         layout="fill"
                         objectFit="cover"
-                        className="rounded-t-2xl sm:rounded-l-2xl brightness-75"
+                        className="rounded-t-2xl sm:rounded-l-2xl sm:rounded-r-none  brightness-75"
                      />
                   </div>
                   <div className="h-full w-full px-6 py-4 sm:p-6 lg:p-8 dark:bg-neutral-800 dark:border-neutral-700">
