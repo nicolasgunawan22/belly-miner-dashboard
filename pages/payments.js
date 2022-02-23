@@ -27,7 +27,7 @@ export async function getServerSideProps({ req }) {
 
    const userId = jwt(initProps.token)._id
 
-   const user_res = await fetch(`https://belly-miner-api.herokuapp.com/api/user/${userId}`)
+   const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
    const userData = await user_res.json()
    const walletAddress = userData?.user?.walletAddress
 

@@ -28,7 +28,7 @@ function Signup() {
       e.preventDefault();
       try {
          setIsLoading(true)
-         const response = await axios.post("https://belly-miner-api.herokuapp.com/api/user/register", formData, { crossdomain: true });
+         const response = await axios.post("http://bellyminer-server.herokuapp.com/api/user/register", formData);
          router.replace("/login");
       } catch (err) {
          setError(true)
