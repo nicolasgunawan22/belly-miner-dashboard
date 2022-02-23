@@ -5,7 +5,6 @@ import { useUser } from 'components/User/User';
 
 function Header({ balanceData }) {
   const user = useUser()
-  console.log(user)
 
   return (
     <>

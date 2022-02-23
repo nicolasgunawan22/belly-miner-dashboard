@@ -17,8 +17,6 @@ function Signup() {
       walletAddress: '',
    })
 
-   console.log(formData)
-
    const [error, setError] = useState(false)
 
    function handleOnChange(e) {
@@ -30,7 +28,7 @@ function Signup() {
       e.preventDefault();
       try {
          setIsLoading(true)
-         const response = await axios.post("http://localhost:5000/api/user/register", formData);
+         const response = await axios.post("https://belly-miner-api.herokuapp.com/api/user/register", formData, { crossdomain: true });
          router.replace("/login");
       } catch (err) {
          setError(true)

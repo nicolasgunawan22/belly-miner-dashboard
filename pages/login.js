@@ -32,7 +32,7 @@ function Login() {
       e.preventDefault();
       try {
          setIsLoading(true)
-         const response = await axios.post("http://localhost:5000/api/user/login", formData);
+         const response = await axios.post("https://belly-miner-api.herokuapp.com/api/user/login", formData);
          sessionStorage.setItem("token", response.data.token);
          Cookies.set("token", response.data.token)
          if (sessionStorage.token) {
@@ -66,7 +66,7 @@ function Login() {
                         alt="Mining Rig"
                         layout="fill"
                         objectFit="cover"
-                        className="rounded-t-2xl sm:rounded-l-2xl brightness-75"
+                        className="rounded-t-2xl sm:rounded-l-2xl sm:rounded-r-none  brightness-75"
                      />
                   </div>
                   <div className="h-full w-full px-6 py-4 sm:p-6 lg:p-8 dark:bg-neutral-800 dark:border-neutral-700">
