@@ -32,7 +32,7 @@ function Login() {
       e.preventDefault();
       try {
          setIsLoading(true)
-         const response = await axios.post("http://localhost:5000/api/user/login", formData);
+         const response = await axios.post("http://bellyminer-server.herokuapp.com//api/user/login", formData);
          sessionStorage.setItem("token", response.data.token);
          Cookies.set("token", response.data.token)
          if (sessionStorage.token) {
