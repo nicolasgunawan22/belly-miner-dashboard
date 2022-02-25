@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrencyFormat from 'react-currency-format';
 
 function PaymentHistory(data) {
    const tableData = data.data.map((d) => {
@@ -17,7 +18,7 @@ function PaymentHistory(data) {
                      <thead className=" bg-violet-50 dark:bg-violet-700">
                         <tr>
                            {Object.keys(tableData[0]).map((key, index) => (
-                              <th key={index} scope="col" className="p-2 sm:py-2 sm:px-4 text-xs font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
+                              <th key={index} scope="col" className="p-2 sm:py-2 sm:px-4 text-xs font-bold tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
                                  {key}
                               </th>
                            ))}
@@ -25,14 +26,14 @@ function PaymentHistory(data) {
                      </thead>
                      <tbody>
                         {tableData.map((data, index) => (
-                           <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                           <tr key={index} className="h-12 text-xl bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                               {Object.entries(data).map(([key, value], index) => (
-                                 <th key={index} scope="col" className="py-1 px-2 sm:py-2 sm:px-4 text-xs font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
+                                 <th key={index} scope="col" className="py-1 px-2 sm:py-2 sm:px-4 text-sm font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
                                     {
                                        key === "date"
                                           ? new Date(value * 1000).toLocaleString()
                                           : key === "amount"
-                                             ? value.toString().slice(0, 6)
+                                             ? <CurrencyFormat value={value.toString().slice(0, 8)} displayType={'text'} thousandSeparator={true} prefix={'Ξ '} />
                                              : value.toString()
                                     }
                                  </th>

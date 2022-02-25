@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Header from "components/Header/Header.js";
-import Container from "components/Container/Container.js";
-import Graph from "components/Graph/Graph.js";
-import Table from "components/Table/Table.js";
-import PaymentHistory from "components/Table/PaymentHistory.js";
+import Header from "components/Header/Header";
+import Container from "components/Container/Container";
+import Graph from "components/Graph/Graph";
+import RechartGraph from "components/Graph/RechartGraph";
+import Table from "components/Table/Table";
+import PaymentHistory from "components/Table/PaymentHistory";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -32,13 +34,19 @@ ChartJS.register(
 
 
 export default function Home({ hashratechart, balance, approx_earnings, payments, initProps, userData }) {
+  const router = useRouter()
   const user = useUser()
   const dispatch = useDispatchUser()
-  console.log(user)
 
   useEffect(() => {
     dispatch({ type: 'GET_USER', payload: userData });
-  }, [userData])
+  }, [dispatch, userData])
+
+  useEffect(() => {
+    if (!sessionStorage.token) {
+      router.replace("/login");
+    }
+  }, [router])
 
   const hashRateChartData = hashratechart?.data
   const labels = hashRateChartData?.map(data => new Date(data.date * 1000).toLocaleString()).slice(-25)
@@ -52,7 +60,6 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
     responsive: true,
   };
   const data = {
-
     labels,
     datasets: [
       {
@@ -74,14 +81,23 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
 
       <Container>
         <Row>
-          <Header balanceData={balanceData} />
+          <Header
+            balanceData={balanceData}
+          />
+        </Row>
+        <Row>
+          <RechartGraph chartData={hashrate} chartlabels={labels} />
         </Row>
         <Row>
           <Col sm={5}>
-            <PaymentHistory data={paymentsData} />
+            <PaymentHistory
+              data={paymentsData}
+            />
           </Col>
           <Col sm={7}>
-            <Table data={approxEarnings} />
+            <Table
+              data={approxEarnings}
+            />
           </Col>
         </Row>
         <Row>
@@ -102,11 +118,10 @@ export async function getServerSideProps({ req }) {
     }
   }
 
-  const userId = jwt(initProps.token)._id
+  const userId = jwt(initProps?.token)._id
 
-  const user_res = await fetch(`http://belly-miner-api.herokuapp.com/api/user/${userId}`)
+  const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
   const userData = await user_res.json()
-  console.log(userData)
   const walletAddress = userData.user.walletAddress
 
   const nanopool_user_res = await fetch(`https://api.nanopool.org/v1/eth/user/${walletAddress}`)
@@ -117,7 +132,6 @@ export async function getServerSideProps({ req }) {
   const balance_res = await fetch(`https://api.nanopool.org/v1/eth/balance/${walletAddress}`)
   const payments_res = await fetch(`https://eth.nanopool.org/api/v1/payments/${walletAddress}`)
   const approx_earnings_res = await fetch(`https://eth.nanopool.org/api/v1/approximated_earnings/${avgHashrateH24}`)
-  console.log(balance_res)
   const hashratechart = await chart_res.json()
   const balance = await balance_res.json()
   const approx_earnings = await approx_earnings_res.json()

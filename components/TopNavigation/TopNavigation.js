@@ -60,11 +60,11 @@ function TopNavigation({ handleOpen }) {
    return (
       <div>
          <Navbar
-            className="font-bold text-base"
+            className="font-bold text-xl"
             expand="md"
          >
             <Nav
-               className="flex w-full flex-row justify-between"
+               className="flex w-full flex-row justify-between p-2"
                navbar
             >
                <NavItem className="">
@@ -91,18 +91,14 @@ function TopNavigation({ handleOpen }) {
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
                      <Link href='/profile' passHref>
-                        <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
-                           <BsFillPersonFill className="text-lg" />
+                        <button className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
+                           <BsFillPersonFill className=" text-xl" />
                            My Profile
                         </button>
                      </Link>
-                     {/* <button className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
-                        <BsFillGearFill className="text-lg" />
-                        Settings
-                     </button> */}
                      <DropdownItem divider />
-                     <button onClick={handleLogout} className="flex gap-2 items-center px-2.5 py-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
-                        <BiLogOut className="text-lg" />
+                     <button onClick={handleLogout} className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
+                        <BiLogOut className=" text-xl" />
                         Logout
                      </button>
                   </DropdownMenu>

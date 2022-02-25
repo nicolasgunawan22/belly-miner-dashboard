@@ -49,10 +49,10 @@ function SideBar({ show, handleClose }) {
         color="dark"
         dark="true"
         fixed="top"
-        className={`z-30 h-full w-64 bg-violet-700 fixed bottom-0 top-0 left-0 flex flex-col p-8 hover:no-underline gap-12 text-lg ${show ? "translate-x-0 " : "-translate-x-full "} sm:translate-x-0 transition-all ease-in-out`}
+        className={`z-30 min-h-full w-64 bg-violet-700 fixed bottom-0 top-0 left-0 flex flex-col p-6 hover:no-underline gap-12 text-xl ${show ? "translate-x-0 " : "-translate-x-full "} sm:translate-x-0 transition-all ease-in-out`}
       >
-        <NavbarBrand href="/" className="text-white flex justify-center font-bold">
-          BellyMiner
+        <NavbarBrand href="/" >
+          <h4 className="text-white flex justify-left font-black">BellyMiner</h4>
         </NavbarBrand>
         <Nav
           className="flex flex-col height-full gap-4"
@@ -61,7 +61,7 @@ function SideBar({ show, handleClose }) {
           {routes.map((route, index) => (
             <NavItem key={index} className={`flex items-center rounded-3xl hover:-translate-y-0.5 ${router.pathname === route.path ? 'bg-violet-900' : ''}`}>
               <Link href={route.path}>
-                <a className={`flex items-center gap-6 px-3 py-2 ${router.pathname === route.path ? 'text-white' : 'text-violet-400'} no-underline font-semibold hover:text-violet-400  `}>
+                <a className={`font-extrabold flex items-center gap-6 px-3 py-2 ${router.pathname === route.path ? 'text-white' : 'text-violet-400'} no-underline font-semibold hover:text-violet-400  `}>
                   {route.icon}
                   {route.name}
                 </a>

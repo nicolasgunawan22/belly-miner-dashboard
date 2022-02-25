@@ -34,7 +34,7 @@ function Container({ children }) {
           <div className="sm:ml-64">
             <div className="mx-3 sm:mx-4 min-h-screen">
               <TopNavigation handleOpen={handleOpen} handleClose={handleClose} />
-              <div className="mt-2 mb-2 sm:mt-8">
+              <div className="my-6 sm:mt-8">
                 {children}
               </div>
             </div>

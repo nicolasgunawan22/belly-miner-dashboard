@@ -32,11 +32,11 @@ function Login() {
       e.preventDefault();
       try {
          setIsLoading(true)
-         const response = await axios.post("https://belly-miner-api.herokuapp.com/api/user/login", formData);
+         const response = await axios.post("https://bellyminer-server.herokuapp.com/api/user/login", formData);
          sessionStorage.setItem("token", response.data.token);
          Cookies.set("token", response.data.token)
          if (sessionStorage.token) {
-            router.push("/");
+            router.replace("/");
          }
       } catch (err) {
          setError(true)
