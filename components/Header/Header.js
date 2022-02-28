@@ -17,7 +17,7 @@ function Header({ balanceData }) {
                   <Row>
                     <div className="text-center h-20 flex flex-col justify-between">
                       <CardTitle
-                        className="text-base sm:text-xl text-muted border-b-2 border-violet-300 pb-2"
+                        className="text-base sm:text-xl text-muted border-b-2 border-indigo-300 pb-2"
                       >
                         Account
                       </CardTitle>
@@ -33,7 +33,7 @@ function Header({ balanceData }) {
                   <Row>
                     <div className="col text-center h-20 flex flex-col justify-between">
                       <CardTitle
-                        className="text-base sm:text-xl text-muted border-b-2 border-violet-300 pb-2 "
+                        className="text-base sm:text-xl text-muted border-b-2 border-indigo-300 pb-2 "
                       >
                         Balance
                       </CardTitle>
@@ -52,7 +52,7 @@ function Header({ balanceData }) {
                     <div className="col text-center h-20 flex flex-col justify-between">
                       <CardTitle
                         tag="h5"
-                        className="text-base sm:text-xl text-muted border-b-2 border-violet-300 pb-2 "
+                        className="text-base sm:text-xl text-muted border-b-2 border-indigo-300 pb-2 "
                       >
                         Minimum Payout
                       </CardTitle>

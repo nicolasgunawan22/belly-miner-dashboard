@@ -52,7 +52,7 @@ function Help() {
                      </div>
                      <div>
                         <Link href="/help/getting-started">
-                           <a className="inline-flex items-center py-3 px-2 text-sm font-medium text-center text-white bg-violet-700 rounded-lg hover:bg-violet-800 focus:ring-4 focus:ring-violet-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                           <a className="inline-flex items-center py-3 px-2 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                               <AiOutlineRight />
                            </a>
                         </Link>

@@ -10,7 +10,7 @@ function InternalErrorPage() {
    }, [router])
 
    return (
-      <div className="flex flex-col justify-center items-center h-screen w-screen bg-gradient-to-r from-violet-500 to-fuchsia-500">
+      <div className="flex flex-col justify-center items-center h-screen w-screen bg-gradient-to-r from-indigo-500 to-fuchsia-500">
          <h1 className="font-bold text-9xl text-red-200 mb-8">500</h1>
          <h3 className="font-bold text-red-200">Internal server error.</h3>
          <p>You&apos;ll be redirected to login page automatically, or click link below.</p>

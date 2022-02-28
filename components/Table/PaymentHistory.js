@@ -15,7 +15,7 @@ function PaymentHistory(data) {
             <div className="inline-block py-2 min-w-full">
                <div className="overflow-hidden shadow-md rounded-xl">
                   <table className="rounded-xl w-full h-48 ">
-                     <thead className=" bg-violet-50 dark:bg-violet-700">
+                     <thead className=" bg-indigo-50 dark:bg-indigo-700">
                         <tr>
                            {Object.keys(tableData[0]).map((key, index) => (
                               <th key={index} scope="col" className="p-2 sm:py-2 sm:px-4 text-xs font-bold tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">

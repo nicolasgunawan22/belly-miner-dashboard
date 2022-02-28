@@ -17,7 +17,7 @@ import {
 import Link from "next/link"
 import { BsFillPersonFill } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineUserAdd } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useUser } from 'components/User/User';
 
@@ -96,6 +96,14 @@ function TopNavigation({ handleOpen }) {
                            My Profile
                         </button>
                      </Link>
+                     {user.user.isAdmin && (
+                        <Link href='/signup' passHref>
+                           <button className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
+                              <AiOutlineUserAdd className="text-xl" />
+                              Create User
+                           </button>
+                        </Link>
+                     )}
                      <DropdownItem divider />
                      <button onClick={handleLogout} className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
                         <BiLogOut className=" text-xl" />

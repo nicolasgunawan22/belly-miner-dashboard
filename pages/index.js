@@ -55,22 +55,6 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
   const approxEarnings = approx_earnings?.data || 0
   const paymentsData = payments?.data?.slice(-2) || {}
 
-  const options = {
-    tension: 0.45,
-    responsive: true,
-  };
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Hashrate',
-        data: hashrate,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-    ],
-  };
-
   return (
     <div>
       <Head>
@@ -86,7 +70,10 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
           />
         </Row>
         <Row>
-          <RechartGraph chartData={hashrate} chartlabels={labels} />
+          <RechartGraph
+            chartData={hashrate}
+            chartlabels={labels}
+          />
         </Row>
         <Row>
           <Col sm={5}>
@@ -99,9 +86,6 @@ export default function Home({ hashratechart, balance, approx_earnings, payments
               data={approxEarnings}
             />
           </Col>
-        </Row>
-        <Row>
-
         </Row>
       </Container>
     </div >
@@ -117,8 +101,7 @@ export async function getServerSideProps({ req }) {
       initProps.token = cookiesJSON.token;
     }
   }
-
-  const userId = jwt(initProps?.token)._id
+  const userId = initProps.token ? jwt(initProps?.token)._id : "null";
 
   const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
   const userData = await user_res.json()

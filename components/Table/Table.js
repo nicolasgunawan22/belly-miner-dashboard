@@ -13,7 +13,7 @@ function TableComponent({ data }) {
             <div className="inline-block py-2 min-w-full">
                <div className="overflow-hidden shadow-md rounded-xl">
                   <table className="rounded-xl h-48 w-full">
-                     <thead className="bg-violet-50 dark:bg-violet-700">
+                     <thead className="bg-indigo-50 dark:bg-indigo-700">
                         <tr>
                            <th scope="col" className="py-1 px-2 sm:py-2 sm:px-4 text-xs font-bold tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
                               Currency
