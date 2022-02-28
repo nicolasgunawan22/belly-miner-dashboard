@@ -34,8 +34,8 @@ function Container({ children }) {
       let timer = setInterval(scene, 10)
       function scene() {
         if (width >= 100) {
-          clearInterval(timer);
           setIsVisible(false)
+          clearInterval(timer);
         } else {
           setIsVisible(true)
           setWidth((prev) => prev + 1)

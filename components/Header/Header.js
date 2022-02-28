@@ -21,7 +21,7 @@ function Header({ balanceData }) {
                       >
                         Account
                       </CardTitle>
-                      <span className="text-base sm:text-xl">{user.user.walletAddress}</span>
+                      <span className="text-base sm:text-xl font-bold">{user.user.walletAddress}</span>
                     </div>
                   </Row>
                 </CardBody>
@@ -37,7 +37,7 @@ function Header({ balanceData }) {
                       >
                         Balance
                       </CardTitle>
-                      <span className="text-base sm:text-xl">
+                      <span className="text-base sm:text-xl font-bold">
                         {balanceData.toString().slice(0, 8)}
                       </span>
                     </div>
@@ -56,7 +56,7 @@ function Header({ balanceData }) {
                       >
                         Minimum Payout
                       </CardTitle>
-                      <span className="text-base sm:text-xl">0.05</span>
+                      <span className="text-base sm:text-xl font-bold">0.05</span>
                     </div>
                   </Row>
                 </CardBody>

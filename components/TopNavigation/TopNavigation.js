@@ -60,15 +60,15 @@ function TopNavigation({ handleOpen }) {
    return (
       <div>
          <Navbar
-            className="font-bold text-xl"
+            className="font-bold text-base md:text-xl"
             expand="md"
          >
             <Nav
-               className="flex w-full flex-row justify-between p-2"
+               className="flex w-full flex-row justify-between items-center p-2"
                navbar
             >
                <NavItem className="">
-                  <AiOutlineMenu onClick={handleOpen} className="inline-block sm:hidden text-xl my-2 cursor-pointer" />
+                  <AiOutlineMenu onClick={handleOpen} className="inline-block sm:hidden text-lg my-2 cursor-pointer" />
 
                   <li className="hidden sm:inline-block text-black capitalize py-2" href={router.route}>
                      {pageName ? pageName : ''}
@@ -85,28 +85,28 @@ function TopNavigation({ handleOpen }) {
                      nav
                      className="text-black flex items-center"
                   >
-                     <CgProfile className="text-xl mx-2" />
+                     <CgProfile className="text-base md:text-xl mx-2" />
                      {user?.user?.firstName}
 
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
                      <Link href='/profile' passHref>
                         <button className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
-                           <BsFillPersonFill className=" text-xl" />
+                           <BsFillPersonFill className=" text-base md:text-xl" />
                            My Profile
                         </button>
                      </Link>
                      {user.user.isAdmin && (
                         <Link href='/signup' passHref>
                            <button className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
-                              <AiOutlineUserAdd className="text-xl" />
+                              <AiOutlineUserAdd className="text-base md:text-xl" />
                               Create User
                            </button>
                         </Link>
                      )}
                      <DropdownItem divider />
                      <button onClick={handleLogout} className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out" >
-                        <BiLogOut className=" text-xl" />
+                        <BiLogOut className=" text-base md:text-xl" />
                         Logout
                      </button>
                   </DropdownMenu>
