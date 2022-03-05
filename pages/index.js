@@ -21,6 +21,7 @@ import { Row, Col, Card } from "reactstrap";
 import jwt from "jwt-decode";
 import jsHttpCookie from 'cookie';
 import { useUser, useDispatchUser } from 'components/User/User';
+import Cookies from 'js-cookie'
 
 ChartJS.register(
   CategoryScale,
@@ -33,11 +34,9 @@ ChartJS.register(
 );
 
 
-export default function Home({ hashratechart, balance, approx_earnings, payments, initProps, userData }) {
+export default function Home({ hashratechart, balance, approx_earnings, payments, userData }) {
   const router = useRouter()
-  const user = useUser()
   const dispatch = useDispatchUser()
-
   useEffect(() => {
     dispatch({ type: 'GET_USER', payload: userData });
   }, [dispatch, userData])
@@ -101,33 +100,41 @@ export async function getServerSideProps({ req }) {
       initProps.token = cookiesJSON.token;
     }
   }
-  const userId = initProps.token ? jwt(initProps?.token)._id : "null";
+  if (initProps.token) {
+    const userId = jwt(initProps?.token)._id;
 
-  const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
-  const userData = await user_res.json()
-  const walletAddress = userData.user.walletAddress
+    const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
+    const userData = await user_res.json()
+    const walletAddress = userData.user.walletAddress;
 
-  const nanopool_user_res = await fetch(`https://api.nanopool.org/v1/eth/user/${walletAddress}`)
-  const nanopoolUser = await nanopool_user_res.json()
-  const avgHashrateH24 = nanopoolUser?.data?.avgHashrate?.h24 || 0
+    const nanopool_user_res = await fetch(`https://api.nanopool.org/v1/eth/user/${walletAddress}`);
+    const nanopoolUser = await nanopool_user_res?.json()
+    const avgHashrateH24 = nanopoolUser?.data?.avgHashrate?.h24 || 0
 
-  const chart_res = await fetch(`https://api.nanopool.org/v1/eth/hashratechart/${walletAddress}`)
-  const balance_res = await fetch(`https://api.nanopool.org/v1/eth/balance/${walletAddress}`)
-  const payments_res = await fetch(`https://eth.nanopool.org/api/v1/payments/${walletAddress}`)
-  const approx_earnings_res = await fetch(`https://eth.nanopool.org/api/v1/approximated_earnings/${avgHashrateH24}`)
-  const hashratechart = await chart_res.json()
-  const balance = await balance_res.json()
-  const approx_earnings = await approx_earnings_res.json()
-  const payments = await payments_res.json()
+    const chart_res = await fetch(`https://api.nanopool.org/v1/eth/hashratechart/${walletAddress}`)
+    const balance_res = await fetch(`https://api.nanopool.org/v1/eth/balance/${walletAddress}`)
+    const payments_res = await fetch(`https://eth.nanopool.org/api/v1/payments/${walletAddress}`)
+    const approx_earnings_res = await fetch(`https://eth.nanopool.org/api/v1/approximated_earnings/${avgHashrateH24}`)
+    const hashratechart = await chart_res.json()
+    const balance = await balance_res.json()
+    const approx_earnings = await approx_earnings_res.json()
+    const payments = await payments_res.json()
 
-  return {
-    props: {
-      hashratechart,
-      balance,
-      approx_earnings,
-      payments,
-      initProps,
-      userData,
-    },
+    return {
+      props: {
+        hashratechart,
+        balance,
+        approx_earnings,
+        payments,
+        userData,
+      },
+    }
+  } else {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
   }
 }
