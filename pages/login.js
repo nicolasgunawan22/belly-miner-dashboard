@@ -6,6 +6,8 @@ import axios from "axios";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import miningrig from '../public/assets/mining-rig.png'
 import Cookies from 'js-cookie'
+import jwtDecode from "jwt-decode";
+import jwt from "jsonwebtoken"
 
 function Login() {
    const router = useRouter()
@@ -23,6 +25,12 @@ function Login() {
       }
    }, [router])
 
+   useEffect(() => {
+      if (token) {
+         router.push('/')
+      }
+   }, [router, token])
+
    function handleOnChange(e) {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
@@ -33,8 +41,14 @@ function Login() {
       try {
          setIsLoading(true)
          const response = await axios.post("https://bellyminer-server.herokuapp.com/api/user/login", formData);
-         sessionStorage.setItem("token", response.data.token);
-         Cookies.set("token", response.data.token)
+         const { token } = await response.data;
+         const userId = await jwtDecode(token)._id;
+         const res = await axios.get(`https://bellyminer-server.herokuapp.com/api/user/${userId}`)
+         const { user } = res.data
+         const { password, tokens, _id, ...profile } = user
+         sessionStorage.setItem("token", token);
+         Cookies.set("token", token)
+         Cookies.set('PROFILE', JSON.stringify(profile))
          if (sessionStorage.token) {
             router.replace("/");
          }

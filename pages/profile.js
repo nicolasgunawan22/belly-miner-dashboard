@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Container from "components/Container/Container.js";
 import jwt from "jwt-decode";
 import jsHttpCookie from 'cookie';
+import Cookies from 'js-cookie'
 
 function Profile({ userData }) {
    const user = userData.user;
+   const [profile, setProfile] = useState({})
+
+   useEffect(() => {
+      if (Cookies.get("PROFILE")) {
+         setProfile(JSON.parse(Cookies.get("PROFILE")))
+      }
+   }, [])
 
    return (
       <>
@@ -32,7 +40,7 @@ function Profile({ userData }) {
                <p>
                   <strong>Join Since:</strong> {new Date(user.createdAt).toLocaleString()}
                </p>
-               {user.miningData.length && (
+               {user.miningData && user.miningData.length && (
                   <p>
                      <strong>Mining Data:</strong>
                   </p>
@@ -54,14 +62,22 @@ export async function getServerSideProps({ req }) {
          initProps.token = cookiesJSON.token;
       }
    }
-   const userId = initProps.token ? jwt(initProps?.token)._id : "null";
+   if (initProps.token) {
+      const userId = jwt(initProps?.token)._id;
+      const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
+      const userData = await user_res.json()
 
-   const user_res = await fetch(`http://bellyminer-server.herokuapp.com/api/user/${userId}`)
-   const userData = await user_res.json()
-
-   return {
-      props: {
-         userData,
-      },
+      return {
+         props: {
+            userData,
+         },
+      }
+   } else {
+      return {
+         redirect: {
+            destination: '/login',
+            permanent: false,
+         },
+      }
    }
 }

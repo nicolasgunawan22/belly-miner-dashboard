@@ -20,9 +20,10 @@ import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineMenu, AiOutlineUserAdd } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useUser } from 'components/User/User';
+import Cookies from 'js-cookie'
 
 function TopNavigation({ handleOpen }) {
-   const user = useUser()
+   const user = JSON.parse(Cookies.get('PROFILE'))
 
    let routes = [
       {
@@ -86,7 +87,7 @@ function TopNavigation({ handleOpen }) {
                      className="text-black flex items-center"
                   >
                      <CgProfile className="text-base md:text-xl mx-2" />
-                     {user?.user?.firstName}
+                     {user?.firstName}
 
                   </DropdownToggle>
                   <DropdownMenu className="right-0 drop-shadow-lg border-0 rounded-2xl p-0">
@@ -96,7 +97,7 @@ function TopNavigation({ handleOpen }) {
                            My Profile
                         </button>
                      </Link>
-                     {user.user.isAdmin && (
+                     {user?.isAdmin && (
                         <Link href='/signup' passHref>
                            <button className="flex gap-2 items-center p-2 hover:bg-neutral-200 w-full transition-all ease-in-out">
                               <AiOutlineUserAdd className="text-base md:text-xl" />
