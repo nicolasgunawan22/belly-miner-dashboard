@@ -26,36 +26,11 @@ function Container({ children }) {
     }
   }, [router])
 
-  const [width, setWidth] = useState(1)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    function increaseWidth() {
-      let timer = setInterval(scene, 10)
-      function scene() {
-        if (width >= 100) {
-          setIsVisible(false)
-          clearInterval(timer);
-        } else {
-          setIsVisible(true)
-          setWidth((prev) => prev + 1)
-        }
-      }
-    }
-
-    router.events.on('routeChangeStart', increaseWidth)
-    return () => {
-      router.events.off('routeChangeStart', increaseWidth)
-    }
-  }, [])
 
   if (token) {
     return (
       <>
         <div className=" bg-neutral-200 min-h-screen">
-          <div className={`${isVisible ? "inline-block" : "hidden"} fixed w-full h-1`}>
-            <div className="bg-indigo-600 h-1 transition-all" style={{ width: `${width}%` }}></div>
-          </div>
           <SideBar show={show} handleClose={handleClose} />
           <div className="sm:ml-64">
             <div className="mx-3 sm:mx-4 min-h-screen">
